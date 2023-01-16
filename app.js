@@ -1,7 +1,7 @@
+//Connecting API key
 var apiKey = 'b7f1309d0593f6a6760651a040ca97d0'
 var history = JSON.parse(window.localStorage.getItem('city')) || []
 var userInput = ''
-
 var cityName = document.getElementById('textInput')
 var mainCityName = document.getElementById('mainCityName')
 var humidity = document.getElementById('mainHum')
@@ -17,6 +17,7 @@ var image = document.getElementById('image')
 
 var searchButton = document.getElementById('submitBtn')
 searchButton.addEventListener('click', fetchWeather)
+
 var searchHistory = JSON.parse(localStorage.getItem('cityHistory')) || []
 
 for (let index = 0; index < searchHistory.length; index++) {
@@ -26,17 +27,11 @@ for (let index = 0; index < searchHistory.length; index++) {
   previousButton.addEventListener('click', fetchWeather)
 }
 
-//check the city exists
-//append the button to the html (the div for the buttons
-//push cityName.value into history array.
-// Button for new search
-//create a button and set the inner text to cityName.value
-// Button on last search items
-
 function fetchWeather(event) {
   event.preventDefault()
   //will create a button if the city name is not blank, and will not add a new city if it exists as a button.
   console.log(event)
+  //append the button to the html
   var cities = ''
   if (event.target.localName == 'button' && event.target.innerText !== 'Go') {
     cities = event.target.textContent
@@ -54,6 +49,7 @@ function fetchWeather(event) {
     }
   }
 
+  //connecting API
   var url = `https://api.openweathermap.org/data/2.5/forecast?q=${cities}&appid=${apiKey}`
   console.log(url)
 
@@ -67,8 +63,9 @@ function fetchWeather(event) {
       //converting temp to Fahrenhit
       var tempF = Math.floor((data.list[0].main.temp - 273.15) * 1.8 + 32)
       mainCityName.textContent = cities
+      //pulling date from api
       date.textContent = 'Date: ' + data.list[0].dt_txt.split(' ')[0]
-      //date.textContent = 'Date:'.text(today.format('MMM D, YYYY'))
+      //adding icon to match weather
       image.src =
         'http://openweathermap.org/img/w/' +
         data.list[0].weather[0].icon +
@@ -80,7 +77,7 @@ function fetchWeather(event) {
       forecast.textContent = 'forecast ' + data.list[0].forecast
       forecastID.textContent = ' Predicted 5-Day Forecast' // + data.list[0].forecastID
 
-      //for loop to create cards for the next 4 days
+      //for loop to create cards for the predicted forecast for the next 4 days
       var newForecast = ''
 
       for (let i = 0; i < 4; i++) {
