@@ -38,11 +38,16 @@ function fetchWeather(event) {
   } else {
     cities = cityName.value
     if (
+      //push cityName.value into searchHistory array.
       cityName.value !== '' &&
       searchHistory.includes(cityName.value) == false
     ) {
+      // Button for new search
       var previousButton = document.createElement('button')
+      //creates a button and set the inner text to cityName.value
       previousButton.textContent = cityName.value
+
+      // Button on last searched cities
       buttonDiv.appendChild(previousButton)
       searchHistory.push(cityName.value)
       localStorage.setItem('cityHistory', JSON.stringify(searchHistory))
@@ -86,8 +91,9 @@ function fetchWeather(event) {
         )
         var card = `
         <div id="weatherInfoCard" class="card ml-3 mt-2 card border-info mb-3">
-
           <div class="card-body" style="background-color: #cce5ff"> 
+
+        //adds selected data once per update for the following 4 days. 
           <p class="card-text"> Date: ${
             data.list[(i + 1) * 8].dt_txt.split(' ')[0]
           }
