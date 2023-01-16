@@ -13,16 +13,18 @@ This weather dashboard runs in the browser and feature dynamically updated HTML 
 
 ## Installation
 
-Go to [webpage]() to navigate through the app
+Go to [webpage](https://salmaloum.github.io/weather-app/) to navigate through the app
 
 ## Usage
+
+Follow the steps shown below:
+
+![Weather dashboard](assets/images/app.gif)
 
 - Open the app on the browser
 - Type the name of the city you want to get reults for
 - View the current weather and the predicted forecast for the following 4 days.
-- Select cities from your history to view the most recent weather and predicted forecast.
-
-![Weather dashboard](assets/images/app.gif)
+- Select cities from your search history to view the most recent weather and predicted forecast.
 
 ## Credits
 
